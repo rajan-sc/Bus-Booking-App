@@ -3,11 +3,13 @@ const app = express();
 const db = require("./utils/dbConnection");
 const userRoutes = require("./routes/userRoutes");
 const busRoutes = require("./routes/busRoutes");
+const bookingRoutes = require("./routes/bookingRoute");
 
 app.use(express.json());
 
-app.use("/user", userRoutes);
-app.use("/bus", busRoutes);
+app.use("/users", userRoutes);
+app.use("/buses", busRoutes);
+app.use("/bookings", bookingRoutes);
 
 db.sync({ force: false }).then(() => {
     console.log("Database synced");

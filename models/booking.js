@@ -1,25 +1,32 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../utils/dbConnection");
 
-const Bus = sequelize.define("Bus", {
+const Booking = sequelize.define("Booking", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
-    busNumber: {
-        type: DataTypes.STRING,
+    userId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: "Users",
+            key: "id",
+        },
     },
-    totalSeats: {
+    busId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: "Buses",
+            key: "id",
+        },
+    },
+    seatNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    availableSeats: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    }
-})
+});
 
-module.exports = Bus;
-
+module.exports = Booking;

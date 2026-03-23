@@ -2,8 +2,8 @@ const Bus = require("../models/bus");
 const { Op } = require("sequelize");
 const addBus = async (req, res) => {
     try {
-        const { name, seats } = req.body;
-        const bus = await Bus.create({ name, seats });
+        const { busNumber, totalSeats, availableSeats } = req.body;
+        const bus = await Bus.create({ busNumber, totalSeats, availableSeats });
         res.status(201).json(bus);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -17,7 +17,7 @@ const findBus = async (req, res) => {
 
         const bus = await Bus.findAll({
             where: {
-                seats: {
+                availableSeats: {
                     [Op.gte]: seats
                 }
             }

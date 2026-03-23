@@ -2,8 +2,8 @@ const Users = require("../models/users");
 
 const createUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        const user = await Users.create({ name, email, password });
+        const { name, email} = req.body;
+        const user = await Users.create({ name, email});
         res.status(201).json(user);
     } catch (error) {
         res.status(500).json({ error: error.message });
